@@ -14,14 +14,30 @@ const images = [
 ];
 
 
-const allGallery = document.querySelector('.gallery');
+// const allGallery = document.querySelector('.gallery');
 
-for (const image of images) {
-  const li = document.createElement('li');
-  const imageEl = document.createElement('img')
-  imageEl.src = image.url;
-  imageEl.alt = image.alt;
-  imageEl.width = 320;
-  li.appendChild(imageEl);
-  allGallery.appendChild(li);
-}
+// for (const image of images) {
+//   const li = document.createElement('li');
+//   const imageEl = document.createElement('img')
+//   imageEl.src = image.url;
+//   imageEl.alt = image.alt;
+//   imageEl.width = 320;
+//   li.appendChild(imageEl);
+//   allGallery.appendChild(li);
+// }
+
+
+const galleryEl = document.querySelector(".gallery");
+const makeGallaryImageRowMarkup = (image) => {
+  const { url, alt } = image;
+
+  return `
+  <li style = 'display: block'>
+    <img src = ${url}, alt = ${alt}, width = 240>
+  </li>
+  `;
+};
+
+const gallaryImageRowMarkup = images.map(makeGallaryImageRowMarkup).join("");
+
+galleryEl.insertAdjacentHTML("beforeend", gallaryImageRowMarkup);
